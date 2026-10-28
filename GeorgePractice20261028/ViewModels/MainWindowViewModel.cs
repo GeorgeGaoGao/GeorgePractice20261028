@@ -1,7 +1,9 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using System;
 using System.Net.Http.Headers;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace GeorgePractice20261028.ViewModels
 {
@@ -19,9 +21,9 @@ namespace GeorgePractice20261028.ViewModels
 
         void ExecuteUIStuckCommand()
         {
-            Thread thread = new Thread(Test);
-            thread.IsBackground = true;
-            thread.Start();
+            Action action = new Action(Test);
+            Task task = new Task(action);
+            task.Start();
         }
 
         private static void Test()
